@@ -1,0 +1,16 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+indent_size = 2
+tab_width = 8 # This is so tabs are more easily spotted.
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = auto
+
+[*.{rb,rake,md}]
+max_line_length = 80

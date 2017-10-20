@@ -1,0 +1,18 @@
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1>Welcome</h1>
+            <p class="lead">This is our new test quizzes system.</p>
+            <ul class="list-unstyled">
+                <li>Admin user: <%= Rails.application.secrets.admin_email %></li>
+                <li>Admin password: <%= Rails.application.secrets.admin_password %></li>
+            </ul>
+            <p><%= link_to pluralize(User.count, "users"), users_path %> registered</p>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
