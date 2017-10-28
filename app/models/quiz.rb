@@ -9,7 +9,8 @@
 #
 
 class Quiz < ApplicationRecord
-  has_many :questions, dependent: :destroy
+  has_many :taken_quizzes, dependent: :destroy
+  has_many :questions,     dependent: :destroy
   accepts_nested_attributes_for :questions, allow_destroy: true
 
   validates :title, presence: true

@@ -27,6 +27,8 @@ RSpec.describe User do
 
   it { should respond_to(:email) }
 
+  it { should have_many(:taken_quizzes).dependent(:destroy) }
+
   it "#email returns a string" do
     expect(@user.email).to match 'user@example.com'
   end
