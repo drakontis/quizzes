@@ -11,6 +11,7 @@
 
 class Choice < ApplicationRecord
   belongs_to :question, optional: true
+  has_many   :answers,  dependent: :destroy
 
   validates :statement, presence: true
 end
