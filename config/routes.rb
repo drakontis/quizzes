@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :users
 
-  resources :quizzes, only: ['index']
+  resources :quizzes, only: ['index', 'show']
+  resources :taken_quizzes, only: ['create']
 end

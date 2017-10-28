@@ -10,6 +10,7 @@
           <th>#</th>
           <th>Title</th>
           <th>Taken</th>
+          <th></th>
         </tr>
         </thead>
 
@@ -19,6 +20,7 @@
               <td><%= index + 1 %></td>
               <td><%= quiz.title %></td>
               <td><%= "#{current_user.taken_quizzes_for_quiz(quiz).count} times" %></td>
+              <td><%= link_to 'Take', taken_quizzes_path(quiz_id: quiz.id), method: :post, id: "take-quiz-#{quiz.id}", class: 'btn btn-primary' %></td>
             </tr>
         <% end %>
         </tbody>

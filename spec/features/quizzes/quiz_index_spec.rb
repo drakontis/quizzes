@@ -26,16 +26,19 @@ RSpec.feature 'Quizzes index page', :devise do
     expect(page.find('table thead tr th:nth-child(1)').text).to eq '#'
     expect(page.find('table thead tr th:nth-child(2)').text).to eq 'Title'
     expect(page.find('table thead tr th:nth-child(3)').text).to eq 'Taken'
+    expect(page.find('table thead tr th:nth-child(4)').text).to eq ''
 
     # First quiz
     expect(page.find('table tbody tr:nth-child(1) td:nth-child(1)').text).to eq '1'
     expect(page.find('table tbody tr:nth-child(1) td:nth-child(2)').text).to eq quiz_1.title
     expect(page.find('table tbody tr:nth-child(1) td:nth-child(3)').text).to eq '0 times'
+    expect(page.find('table tbody tr:nth-child(1) td:nth-child(4)')).to have_link 'Take'
 
     # Second quiz
     expect(page.find('table tbody tr:nth-child(2) td:nth-child(1)').text).to eq '2'
     expect(page.find('table tbody tr:nth-child(2) td:nth-child(2)').text).to eq quiz_2.title
     expect(page.find('table tbody tr:nth-child(2) td:nth-child(3)').text).to eq '0 times'
+    expect(page.find('table tbody tr:nth-child(2) td:nth-child(4)')).to have_link 'Take'
   end
 
   # Scenario: Show the times that I took each quiz
