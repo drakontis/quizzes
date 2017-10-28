@@ -2,4 +2,6 @@
   <% if current_user.try(:admin?) %>
     <li><%= link_to 'Admin', admin_root_path %></li>
   <% end %>
+
+    <li><%= link_to 'Quizzes', quizzes_path %></li>
 <% end %>
