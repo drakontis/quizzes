@@ -21,16 +21,14 @@
 
 RSpec.describe User do
 
-  before(:each) { @user = User.new(email: 'user@example.com') }
-
-  subject { @user }
+  subject { User.new(email: 'user@example.com') }
 
   it { should respond_to(:email) }
 
   it { should have_many(:taken_quizzes).dependent(:destroy) }
 
   it "#email returns a string" do
-    expect(@user.email).to match 'user@example.com'
+    expect(subject.email).to match 'user@example.com'
   end
 
 end
