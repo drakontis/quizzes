@@ -33,4 +33,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def taken_quizzes_for_quiz(quiz)
+    taken_quizzes.where(quiz: quiz)
+  end
 end

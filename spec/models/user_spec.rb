@@ -31,4 +31,23 @@ RSpec.describe User do
     expect(subject.email).to match 'user@example.com'
   end
 
+  describe '#taken_quizzes_for_quiz' do
+    subject { FactoryGirl.create :user }
+    let(:quiz) { FactoryGirl.create :quiz }
+
+    before do
+      3.times do
+        subject.taken_quizzes << TakenQuiz.new(quiz: quiz)
+      end
+    end
+
+    it 'should return the taken_quizzes objects for a given quiz' do
+      result = subject.taken_quizzes_for_quiz(quiz)
+      expect(result.count).to eq 3
+
+      expect(result.first.quiz).to eq quiz
+      expect(result.second.quiz).to eq quiz
+      expect(result.third.quiz).to eq quiz
+    end
+  end
 end
