@@ -16,4 +16,8 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :choices, allow_destroy: true
 
   validates :prompt, presence: true
+
+  def next
+    quiz.questions.where("id > ?", id).first
+  end
 end
