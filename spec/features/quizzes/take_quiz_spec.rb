@@ -17,7 +17,6 @@ RSpec.feature 'Take quiz', :devise do
   scenario 'I take a quiz' do
     user = FactoryGirl.create(:user, :admin)
     quiz_1 = FactoryGirl.create(:quiz, title: 'Quiz 1')
-    quiz_2 = FactoryGirl.create(:quiz, title: 'Quiz 2')
 
     login_as(user, scope: :user)
     visit quizzes_path

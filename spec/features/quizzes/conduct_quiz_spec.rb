@@ -13,15 +13,6 @@ RSpec.feature 'Conduct quiz', :devise do
   let(:quiz){ FactoryGirl.create(:quiz, title: 'Quiz 1') }
 
   before do
-    3.times do |question_index|
-      question = FactoryGirl.build(:question, prompt: "Question #{question_index+1}", quiz: quiz)
-
-      4.times do |choice_index|
-        question.choices << FactoryGirl.build(:choice, statement: "choice #{question_index+1}-#{choice_index+1}")
-      end
-      question.save!
-    end
-
     # Let's ensure that our test data are correct.
     expect(quiz.questions.count).to eq 3
 
