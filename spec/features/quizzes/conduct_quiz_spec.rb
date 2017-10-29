@@ -186,7 +186,7 @@ RSpec.feature 'Conduct quiz', :devise do
 
     sleep 0.5
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq quizzes_path
     expect(page).to have_content 'Thank you!'
   end
 end

@@ -27,7 +27,7 @@ class TakenQuizzesController < ApplicationController
       redirect_to root_url
     elsif answer.question.last?
       flash[:notice] = 'Thank you!'
-      redirect_to root_url
+      redirect_to quizzes_url
     end
   end
 
