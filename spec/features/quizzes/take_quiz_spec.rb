@@ -36,7 +36,7 @@ RSpec.feature 'Take quiz', :devise do
   #   And I click the take button
   #   And An error occurred
   #   Then I should see the error message
-  scenario 'I take a quiz' do
+  scenario 'Failed to take a quiz' do
     user = FactoryGirl.create(:user, :admin)
     quiz_1 = FactoryGirl.create(:quiz, title: 'Quiz 1')
     quiz_2 = FactoryGirl.create(:quiz, title: 'Quiz 2')
@@ -51,5 +51,20 @@ RSpec.feature 'Take quiz', :devise do
 
     expect(page).to have_content 'Something went wrong, please try again'
     expect(current_path).to eq "/quizzes"
+  end
+
+  # Scenario: Try to visit a not taken quiz
+  #   Given I am signed in
+  #   When I visit a quiz
+  #   Then I should see the error message
+  scenario 'Visit a not taken quiz' do
+    user = FactoryGirl.create(:user, :admin)
+    login_as(user, scope: :user)
+    quiz_1 = FactoryGirl.create(:quiz, title: 'Quiz 1')
+
+    visit quiz_path(quiz_1)
+
+    expect(current_path).to eq "/quizzes"
+    expect(page).to have_content 'To answer questions, please take a quiz'
   end
 end
