@@ -25,6 +25,14 @@ FactoryGirl.define do
     email "test@example.com"
     password "please123"
 
+    trait :user do
+      role 'user'
+    end
+
+    trait :vip do
+      role 'vip'
+    end
+
     trait :admin do
       role 'admin'
     end
