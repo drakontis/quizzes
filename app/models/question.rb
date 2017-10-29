@@ -20,4 +20,8 @@ class Question < ApplicationRecord
   def next
     quiz.questions.where("id > ?", id).first
   end
+
+  def last?
+    self.next.nil?
+  end
 end

@@ -37,4 +37,42 @@ RSpec.describe Question, type: :model do
       expect(question_2.next).to eq question_3
     end
   end
+
+  describe '#last?' do
+    it 'should return true if it is the last question of the quiz' do
+      quiz_1 = FactoryGirl.create(:quiz, title: 'Test Quiz 1')
+      quiz_2 = FactoryGirl.create(:quiz, title: 'Test Quiz 2')
+
+      question_1 = FactoryGirl.create(:question, prompt: 'Test Question 1', quiz: quiz_1)
+      question_2 = FactoryGirl.create(:question, prompt: 'Test Question 2', quiz: quiz_1)
+      question_3 = FactoryGirl.create(:question, prompt: 'Test Question 3', quiz: quiz_1)
+
+      quiz_2.questions << question_3
+      quiz_2.save!
+      quiz_2.questions << question_1
+      quiz_2.save!
+      quiz_2.questions << question_2
+      quiz_2.save!
+
+      expect(question_3.last?).to be_truthy
+    end
+
+    it 'should return false if it is not the last question of the quiz' do
+      quiz_1 = FactoryGirl.create(:quiz, title: 'Test Quiz 1')
+      quiz_2 = FactoryGirl.create(:quiz, title: 'Test Quiz 2')
+
+      question_1 = FactoryGirl.create(:question, prompt: 'Test Question 1', quiz: quiz_1)
+      question_2 = FactoryGirl.create(:question, prompt: 'Test Question 2', quiz: quiz_1)
+      question_3 = FactoryGirl.create(:question, prompt: 'Test Question 3', quiz: quiz_1)
+
+      quiz_2.questions << question_3
+      quiz_2.save!
+      quiz_2.questions << question_1
+      quiz_2.save!
+      quiz_2.questions << question_2
+      quiz_2.save!
+
+      expect(question_2.last?).to be_falsy
+    end
+  end
 end

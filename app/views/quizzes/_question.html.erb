@@ -9,19 +9,22 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <%= form_for taken_quiz do |f| %>
-        <% question.choices.each do |choice| %>
-            <%= fields_for :answers do |answer_fields| %>
+    <%= form_for taken_quiz, html: {id: 'answer-form'}, data: {remote: true} do |f| %>
+
+        <%= f.fields_for :answer do |answer_fields| %>
+            <%= answer_fields.hidden_field :question_id, value: question.id %>
+
+            <% question.choices.each do |choice| %>
                 <div class="radio" id="choice-<%= choice.id %>">
                   <label>
-                    <%= answer_fields.radio_button :choice_id, 22, id: "choice-#{choice.id}-radio" %>
+                    <%= answer_fields.radio_button :choice_id, choice.id, id: "choice-#{choice.id}-radio", class: 'choice-radio' %>
                     <%= choice.statement.html_safe %>
                   </label>
                 </div>
             <% end %>
         <% end %>
 
-        <%= f.submit 'Next', id: 'submit-question', class: 'btn btn-success center-block', disabled: true %>
+        <%= f.submit question.last? ? 'Finish' : 'Next', id: 'submit-question', class: 'btn btn-success center-block', disabled: true %>
     <% end %>
   </div>
 </div>

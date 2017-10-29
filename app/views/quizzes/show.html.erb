@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-lg-12">
       <h2 class="quiz-title"><%= @quiz.title %></h2>
-      <%= render partial: 'quizzes/question', locals: {question: @quiz.questions.first, taken_quiz: @taken_quiz} %>
+
+      <div id="question">
+        <%= render partial: 'quizzes/question', locals: {question: @quiz.questions.first, taken_quiz: @taken_quiz} %>
+      </div>
     </div>
   </div>
 </div>

@@ -14,5 +14,21 @@ class TakenQuizzesController < ApplicationController
   end
 
   def update
+    @taken_quiz = TakenQuiz.find params['id']
+    @answer = Answer.new(secure_answer_params)
+
+    if !(@taken_quiz.answers << @answer)
+      flash[:error] = 'Something went wrong, please try again later'
+      redirect_to root_url
+    elsif @answer.question.last?
+      flash[:notice] = 'Thank you!'
+      redirect_to root_url
+    end
+  end
+
+  private
+
+  def secure_answer_params
+    params.require(:taken_quiz).require(:answer).permit(:question_id, :choice_id)
   end
 end
