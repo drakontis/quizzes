@@ -86,6 +86,8 @@ GEM
     capybara-webkit (1.1.0)
       capybara (~> 2.0, >= 2.0.2)
       json
+    chartjs-ror (3.3.1)
+      rails (>= 3.1)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -301,6 +303,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-webkit
+  chartjs-ror
   coffee-rails (~> 4.2)
   database_cleaner
   devise

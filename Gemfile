@@ -27,6 +27,7 @@ gem 'devise'
 gem 'high_voltage'
 gem 'pg'
 gem 'slim-rails'
+gem 'chartjs-ror'
 group :development do
   gem 'better_errors'
   gem 'rails_layout'

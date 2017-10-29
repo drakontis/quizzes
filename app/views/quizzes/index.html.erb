@@ -11,6 +11,7 @@
           <th>Title</th>
           <th>Taken</th>
           <th></th>
+          <th></th>
         </tr>
         </thead>
 
@@ -27,6 +28,9 @@
                             id: "take-quiz-#{quiz.id}",
                             class: 'btn btn-primary' %>
               </td>
+              <td>
+                <%= link_to 'Global stats', show_stats_quiz_path(quiz), class: "btn btn-primary", 'data-toggle' => "modal", 'data-target' => "#stats-modal", 'data-remote' => true %>
+              </td>
             </tr>
         <% end %>
         </tbody>
@@ -38,3 +42,19 @@
 
 </div>
 <!-- /.container -->
+
+<div class="modal fade" id="stats-modal" tabindex="-1" role="dialog" aria-labelledby="stats-modal-Label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="stats-modal-Label">Question Stats</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

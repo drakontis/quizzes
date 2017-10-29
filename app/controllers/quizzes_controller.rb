@@ -12,4 +12,8 @@ class QuizzesController < ApplicationController
     flash[:error] = 'To answer questions, please take a quiz'
     redirect_to quizzes_url
   end
+
+  def show_stats
+    @quiz = Quiz.find params[:id]
+  end
 end
