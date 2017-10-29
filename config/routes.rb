@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :users
 
   resources :quizzes, only: ['index', 'show']
-  resources :taken_quizzes, only: ['create']
+  resources :taken_quizzes, only: ['create', 'update']
 end

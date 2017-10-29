@@ -7,5 +7,6 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find params[:id]
+    @taken_quiz = TakenQuiz.find params[:taken_quiz_id]
   end
 end

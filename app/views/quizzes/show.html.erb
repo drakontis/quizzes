@@ -1,7 +1,38 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h2><%= @quiz.title %></h2>
+      <h2 class="quiz-title"><%= @quiz.title %></h2>
+
+      <!--Remove the following line and add the following code to a partial-->
+      <% question = @quiz.questions.first %>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <%= question.prompt.html_safe %>
+          <span>
+            <%= "(#{@taken_quiz.answers.count + 1}/#{@taken_quiz.quiz.questions.count})" %>
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <%= form_for @taken_quiz, html: {class: 'asdf'} do |f| %>
+              <% question.choices.each do |choice| %>
+                  <%= fields_for :answers do |answer_fields| %>
+                      <div class="radio" id="choice-<%= choice.id %>">
+                        <label>
+                          <%= answer_fields.radio_button :choice_id, 22, id: "choice-#{choice.id}-radio" %>
+                          <%= choice.statement.html_safe %>
+                        </label>
+                      </div>
+                  <% end %>
+              <% end %>
+
+              <%= f.submit 'Next', id: 'submit-question', class: 'btn btn-success center-block', disabled: true %>
+          <% end %>
+        </div>
+      </div>
 
     </div>
   </div>
