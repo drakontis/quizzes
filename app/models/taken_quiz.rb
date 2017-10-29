@@ -14,6 +14,7 @@ class TakenQuiz < ApplicationRecord
 
   validates :user, presence: true
   validates :quiz, presence: true
+  validate :not_start_same_quiz_if_not_finished
 
   def self.active_taken_quiz(quiz:, user:)
     TakenQuiz.where(quiz: quiz, user: user).select{ |taken_quiz| taken_quiz.active? }.first
@@ -28,6 +29,16 @@ class TakenQuiz < ApplicationRecord
       quiz.questions.first
     else
       answers.map(&:question).max_by(&:id).next
+    end
+  end
+
+  #######
+  private
+  #######
+
+  def not_start_same_quiz_if_not_finished
+    if TakenQuiz.active_taken_quiz(quiz: quiz, user: user).present?
+      errors[:quiz] << "already been taken. Please complete it before you try to take it again."
     end
   end
 end

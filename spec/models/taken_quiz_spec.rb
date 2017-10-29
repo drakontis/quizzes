@@ -17,6 +17,24 @@ RSpec.describe TakenQuiz, type: :model do
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:quiz) }
 
+  it 'should not be able to take a quiz if any not finished exists' do
+    quiz = FactoryGirl.create :quiz, title: 'Quiz 1'
+    user = FactoryGirl.create :user
+
+    taken_quiz_1 = TakenQuiz.new(quiz: quiz, user: user)
+    taken_quiz_1.answers << Answer.new(taken_quiz: taken_quiz_1,
+                                       question: quiz.questions.first,
+                                       choice: quiz.questions.first.choices.first)
+    taken_quiz_1.answers << Answer.new(taken_quiz: taken_quiz_1,
+                                       question: quiz.questions.second,
+                                       choice: quiz.questions.second.choices.first)
+    taken_quiz_1.save!
+
+    taken_quiz_2 = TakenQuiz.new(quiz: quiz, user: user)
+    expect(taken_quiz_2).not_to be_valid
+    expect(taken_quiz_2.errors.full_messages).to include 'Quiz already been taken. Please complete it before you try to take it again.'
+  end
+
   describe '#active_taken_quiz' do
     it 'should return the first active taken quiz' do
       quiz = FactoryGirl.create :quiz, title: 'Quiz 1'

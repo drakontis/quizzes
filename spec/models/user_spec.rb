@@ -37,7 +37,12 @@ RSpec.describe User do
 
     before do
       3.times do
-        subject.taken_quizzes << TakenQuiz.new(quiz: quiz)
+        taken_quiz = TakenQuiz.new(quiz: quiz)
+        taken_quiz.answers << Answer.new(question: quiz.questions.first, choice: quiz.questions.first.choices.first)
+        taken_quiz.answers << Answer.new(question: quiz.questions.second, choice: quiz.questions.second.choices.first)
+        taken_quiz.answers << Answer.new(question: quiz.questions.third, choice: quiz.questions.third.choices.first)
+
+        subject.taken_quizzes << taken_quiz
       end
     end
 

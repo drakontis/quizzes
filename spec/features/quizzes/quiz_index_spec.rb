@@ -51,7 +51,12 @@ RSpec.feature 'Quizzes index page', :devise do
     quiz_2 = FactoryGirl.create(:quiz, title: 'Quiz 2')
     quiz_3 = FactoryGirl.create(:quiz, title: 'Quiz 3')
 
-    user.taken_quizzes << TakenQuiz.new(quiz: quiz_1)
+    taken_quiz_1 = TakenQuiz.new(quiz: quiz_1)
+    taken_quiz_1.answers << Answer.new(question: quiz_1.questions.first, choice: quiz_1.questions.first.choices.first)
+    taken_quiz_1.answers << Answer.new(question: quiz_1.questions.second, choice: quiz_1.questions.second.choices.first)
+    taken_quiz_1.answers << Answer.new(question: quiz_1.questions.third, choice: quiz_1.questions.third.choices.first)
+
+    user.taken_quizzes << taken_quiz_1
     user.taken_quizzes << TakenQuiz.new(quiz: quiz_1)
     user.taken_quizzes << TakenQuiz.new(quiz: quiz_2)
     user.save!
