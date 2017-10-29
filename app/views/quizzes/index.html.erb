@@ -20,7 +20,13 @@
               <td><%= index + 1 %></td>
               <td><%= quiz.title %></td>
               <td><%= "#{current_user.taken_quizzes_for_quiz(quiz).count} times" %></td>
-              <td><%= link_to 'Take', taken_quizzes_path(quiz_id: quiz.id), method: :post, id: "take-quiz-#{quiz.id}", class: 'btn btn-primary' %></td>
+              <td>
+                <%= link_to TakenQuiz.active_taken_quiz(quiz: quiz, user: current_user).present? ? 'Continue' : 'Take',
+                            taken_quizzes_path(quiz_id: quiz.id),
+                            method: :post,
+                            id: "take-quiz-#{quiz.id}",
+                            class: 'btn btn-primary' %>
+              </td>
             </tr>
         <% end %>
         </tbody>

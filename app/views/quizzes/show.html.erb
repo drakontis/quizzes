@@ -4,7 +4,7 @@
       <h2 class="quiz-title"><%= @quiz.title %></h2>
 
       <div id="question">
-        <%= render partial: 'quizzes/question', locals: {question: @quiz.questions.first, taken_quiz: @taken_quiz} %>
+        <%= render partial: 'quizzes/question', locals: {question: @taken_quiz.next_question, taken_quiz: @taken_quiz} %>
       </div>
     </div>
   </div>

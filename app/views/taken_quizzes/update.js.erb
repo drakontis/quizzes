@@ -1,1 +1,1 @@
-$('#question').html("<%= escape_javascript (render partial: 'quizzes/question', locals: {question: @answer.question.next, taken_quiz: @taken_quiz}) %>")
+$('#question').html("<%= escape_javascript (render partial: 'quizzes/question', locals: {question: @taken_quiz.next_question, taken_quiz: @taken_quiz}) %>")
