@@ -16,4 +16,5 @@ class Answer < ApplicationRecord
   validates :taken_quiz, presence: true
   validates :question,   presence: true
   validates :choice,     presence: true
+  validates :choice, uniqueness: {scope: [:taken_quiz, :question]}
 end

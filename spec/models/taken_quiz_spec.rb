@@ -31,7 +31,7 @@ RSpec.describe TakenQuiz, type: :model do
                                          choice: quiz.questions.second.choices.first)
       taken_quiz_1.answers << Answer.new(taken_quiz: taken_quiz_1,
                                          question: quiz.questions.second,
-                                         choice: quiz.questions.second.choices.first)
+                                         choice: quiz.questions.third.choices.first)
       taken_quiz_1.save!
 
       taken_quiz_2 = TakenQuiz.new(quiz: quiz, user: user)

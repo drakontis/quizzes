@@ -18,4 +18,18 @@ RSpec.describe Answer, type: :model do
   it { should validate_presence_of(:taken_quiz) }
   it { should validate_presence_of(:question)   }
   it { should validate_presence_of(:choice)     }
+
+  it 'should not be valid when choice already exists for a quiz' do
+    user = FactoryGirl.create(:user)
+    quiz = FactoryGirl.create(:quiz)
+
+    taken_quiz = TakenQuiz.new(user: user, quiz: quiz)
+    taken_quiz.save!
+
+    taken_quiz.answers << Answer.new(question: quiz.questions.first, choice: quiz.questions.first.choices.first)
+
+    answer = Answer.new(taken_quiz: taken_quiz, question: quiz.questions.first, choice: quiz.questions.first.choices.first)
+    expect(answer).not_to be_valid
+    expect(answer.errors.full_messages).to include 'Choice has already been taken'
+  end
 end
