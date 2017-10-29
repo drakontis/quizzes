@@ -10,7 +10,7 @@
 class TakenQuiz < ApplicationRecord
   belongs_to :user
   belongs_to :quiz
-  has_many   :answers
+  has_many   :answers, dependent: :destroy
 
   validates :user, presence: true
   validates :quiz, presence: true
