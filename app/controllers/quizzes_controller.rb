@@ -15,5 +15,6 @@ class QuizzesController < ApplicationController
 
   def show_stats
     @quiz = Quiz.find params[:id]
+    @user = User.find_by_id params[:user_id]
   end
 end

@@ -12,6 +12,7 @@
           <th>Taken</th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
         </thead>
 
@@ -30,6 +31,9 @@
               </td>
               <td>
                 <%= link_to 'Global stats', show_stats_quiz_path(quiz), class: "btn btn-primary", 'data-toggle' => "modal", 'data-target' => "#stats-modal", 'data-remote' => true %>
+              </td>
+              <td>
+                <%= link_to 'My stats', show_stats_quiz_path(quiz, user_id: current_user.id), class: "btn btn-primary", 'data-toggle' => "modal", 'data-target' => "#stats-modal", 'data-remote' => true %>
               </td>
             </tr>
         <% end %>
